@@ -1,0 +1,54 @@
+name: Tweet
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: '23 * * * *'
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out this repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Configure Python with pip cache
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    - name: Cache Playwright browsers
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/ms-playwright/
+        key: ${{ runner.os }}-browsers
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+    - name: Install Playwright browser
+      run: |
+        shot-scraper install -b firefox
+    - name: Configure Git for commits
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+    - name: Generate screenshot with shot-scraper
+      run: |-
+        shot-scraper https://covid19.sccgov.org/dashboard-wastewater \
+          -s iframe --wait 3000 -b firefox --retina -o /tmp/covid.png
+    - name: Tweet the new image
+      env:
+        TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+        TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+        TWITTER_ACCESS_TOKEN_KEY: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+        TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+      run: |-
+        tweet-images "Latest Covid sewage charts for the SF Bay Area" \
+          /tmp/covid.png --alt "Screenshot of the charts" > latest-tweet.md
+    - name: Commit latest-tweet.md
+      run: |-
+        git add -A
+        timestamp=$(date -u)
+        git commit -m "${timestamp}" || exit 0
+        git push
