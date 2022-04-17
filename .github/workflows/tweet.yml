@@ -42,7 +42,7 @@ jobs:
         TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
         TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
         TWITTER_ACCESS_TOKEN_KEY: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
-        TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        TWITER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
       run: |-
         tweet-images "Latest Covid sewage charts for the SF Bay Area" \
           /tmp/covid.png --alt "Screenshot of the charts" > latest-tweet.md
