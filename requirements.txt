@@ -1,2 +1,2 @@
 shot-scraper
-tweet-images
+tweet-images>=0.1.1
