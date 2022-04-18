@@ -4,6 +4,8 @@ The [@covidsewage](https://twitter.com/covidsewage) Twitter bot
 
 Tweets a daily image of the charts from the County of Santa Clara [SARS-CoV-2 Sewage Monitoring Data](https://covid19.sccgov.org/dashboard-wastewater).
 
+Background on this project: [Building a Covid sewage Twitter bot](https://simonwillison.net/2022/Apr/18/covid-sewage/)
+
 ## How it works
 
 The bot runs using [this scheduled GitHub Actions workflow](https://github.com/simonw/covidsewage-bot/blob/main/.github/workflows/tweet.yml).
