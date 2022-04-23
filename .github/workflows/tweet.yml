@@ -44,7 +44,7 @@ jobs:
         TWITTER_ACCESS_TOKEN_KEY: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
         TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
       run: |-
-        tweet-images "Latest Covid sewage charts for the SF Bay Area" \
+        tweet-images "Latest Covid sewage charts for the SF Bay Area https://covid19.sccgov.org/dashboard-wastewater" \
           /tmp/covid.png --alt "Screenshot of the charts" > latest-tweet.md
     - name: Commit latest-tweet.md
       run: |-
