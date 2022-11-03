@@ -1,1 +1,1 @@
-https://twitter.com/covidsewage/status/1587810116790849538
+https://twitter.com/covidsewage/status/1588171517178761223
