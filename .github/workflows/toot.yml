@@ -44,7 +44,7 @@ jobs:
       run: |-
         mkdir -p ~/.config/toot
         echo $TOOT_CONFIG > ~/.config/toot/config.json
-        toot "Latest Covid sewage charts for the SF Bay Area https://covid19.sccgov.org/dashboard-wastewater" \
+        toot post "Latest Covid sewage charts for the SF Bay Area https://covid19.sccgov.org/dashboard-wastewater" \
           --media /tmp/covid.png --description "Screenshot of the latest Covid charts" > latest-toot.md
     - name: Commit latest-toot.md
       run: |-
