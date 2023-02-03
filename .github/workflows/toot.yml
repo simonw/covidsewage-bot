@@ -26,7 +26,6 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        pip install toot
     - name: Install Playwright browser
       run: |
         shot-scraper install -b firefox
@@ -38,7 +37,7 @@ jobs:
       run: |-
         shot-scraper https://covid19.sccgov.org/dashboard-wastewater \
           -s iframe --wait 3000 -b firefox --retina -o /tmp/covid.png
-    - name: Tweet the new image
+    - name: Toot the new image
       env:
         TOOT_CONFIG: ${{ secrets.MASTODON_TOOT_CONFIG }}
       run: |-
