@@ -1,2 +1,2 @@
 Uploading media: /tmp/covid.png
-Toot posted: https://fedi.simonwillison.net/@covidsewage/110333487544696160
+Toot posted: https://fedi.simonwillison.net/@covidsewage/110339149333418664
