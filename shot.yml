@@ -1,0 +1,7 @@
+- url: https://covid19.sccgov.org/dashboard-wastewater
+  output: /tmp/covid.png
+  selector: iframe
+  wait: 3000
+  javascript: |-
+    const btn = document.querySelector('#prefix-dismissButton');
+    btn && btn.click();

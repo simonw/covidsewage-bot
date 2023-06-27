@@ -29,8 +29,7 @@ jobs:
         shot-scraper install -b firefox
     - name: Generate screenshot with shot-scraper
       run: |-
-        shot-scraper https://covid19.sccgov.org/dashboard-wastewater \
-          -s iframe --wait 3000 -b firefox --retina -o /tmp/covid.png
+        shot-scraper multi shot.yml -b firefox --retina
     - name: Upload screenshot
       uses: actions/upload-artifact@v2
       with:
