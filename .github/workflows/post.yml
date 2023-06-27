@@ -54,6 +54,10 @@ jobs:
       run: |-
         tweet-images "Latest Covid sewage charts for the SF Bay Area https://covid19.sccgov.org/dashboard-wastewater" \
           /tmp/covid.png --alt "Screenshot of the charts" > latest-tweet.md
+    - name: Configure Git for commits
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
     - name: Commit latest-toot.md and latest-tweet.md
       run: |-
         git add -A
