@@ -1,7 +1,7 @@
 # covidsewage-bot
 
 - [@covidsewage@simonwillison.net](https://fedi.simonwillison.net/@covidsewage) on Mastodon
-- [@covidsewage](https://twitter.com/covidsewage) on Twitter
+- [@covidsewage](https://twitter.com/covidsewage) on Twitter, which is no longer updated.
 
 Posts a daily image of the charts from the County of Santa Clara [SARS-CoV-2 Sewage Monitoring Data](https://covid19.sccgov.org/dashboard-wastewater).
 
