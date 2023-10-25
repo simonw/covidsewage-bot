@@ -45,15 +45,15 @@ jobs:
         echo $TOOT_CONFIG > ~/.config/toot/config.json
         toot post "Latest Covid sewage charts for the SF Bay Area https://covid19.sccgov.org/dashboard-wastewater" \
           --media /tmp/covid.png --description "Screenshot of the latest Covid charts" > latest-toot.md
-    - name: Tweet the new image
-      env:
-        TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
-        TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-        TWITTER_ACCESS_TOKEN_KEY: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
-        TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-      run: |-
-        tweet-images "Latest Covid sewage charts for the SF Bay Area https://covid19.sccgov.org/dashboard-wastewater" \
-          /tmp/covid.png --alt "Screenshot of the charts" > latest-tweet.md
+    # - name: Tweet the new image
+    #   env:
+    #     TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+    #     TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+    #     TWITTER_ACCESS_TOKEN_KEY: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+    #     TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+    #   run: |-
+    #     tweet-images "Latest Covid sewage charts for the SF Bay Area https://covid19.sccgov.org/dashboard-wastewater" \
+    #       /tmp/covid.png --alt "Screenshot of the charts" > latest-tweet.md
     - name: Configure Git for commits
       run: |-
         git config user.name "Automated"
