@@ -35,6 +35,7 @@ jobs:
           shot-scraper javascript \
             'https://publichealth.santaclaracounty.gov/health-information/health-data/disease-data/covid-19/covid-19-wastewater' \
             'document.querySelector("iframe").src' \
+            -b firefox \
             --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:128.0) Gecko/20100101 Firefox/128.0' \
             --raw
         ) --wait 5000 -b firefox --retina
@@ -49,7 +50,7 @@ jobs:
       run: |-
         mkdir -p ~/.config/toot
         echo $TOOT_CONFIG > ~/.config/toot/config.json
-        toot post "Latest Covid sewage charts for the SF Bay Area https://covid19.sccgov.org/dashboard-wastewater" \
+        toot post "Latest Covid sewage charts for the SF Bay Area https://publichealth.santaclaracounty.gov/health-information/health-data/disease-data/covid-19/covid-19-wastewater" \
           --media /tmp/covid.png --description "Screenshot of the latest Covid charts" > latest-toot.md
     # - name: Tweet the new image
     #   env:
