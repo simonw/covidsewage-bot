@@ -37,7 +37,7 @@ jobs:
             'document.querySelector("iframe").src' \
             --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:128.0) Gecko/20100101 Firefox/128.0' \
             --raw
-        ) --wait 5000
+        ) --wait 5000 -b firefox --retina
     - name: Upload screenshot
       uses: actions/upload-artifact@v2
       with:
