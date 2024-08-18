@@ -31,7 +31,13 @@ jobs:
         shot-scraper install -b firefox
     - name: Generate screenshot with shot-scraper
       run: |-
-        shot-scraper multi shot.yml -b firefox --retina
+        shot-scraper -o /tmp/covid.png $(
+          shot-scraper javascript \
+            'https://publichealth.santaclaracounty.gov/health-information/health-data/disease-data/covid-19/covid-19-wastewater' \
+            'document.querySelector("iframe").src' \
+            --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:128.0) Gecko/20100101 Firefox/128.0' \
+            --raw
+        ) --wait 5000
     - name: Upload screenshot
       uses: actions/upload-artifact@v2
       with:
