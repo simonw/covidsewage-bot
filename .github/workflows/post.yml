@@ -44,14 +44,35 @@ jobs:
       with:
         name: screenshot
         path: /tmp/covid.png
+    - name: Generate image description
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      run: |-
+        python -c "
+        import base64, openai
+        client = openai.OpenAI()
+        with open('/tmp/covid.png', 'rb') as image_file:
+            encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
+        messages = [
+            {'role': 'system', 'content': 'describe this'},
+            {'role': 'user', 'content': [
+                {'type': 'image_url', 'image_url': {
+                    'url': 'data:image/png;base64,' + encoded_image
+                }}
+            ]}
+        ]
+        completion = client.chat.completions.create(model='gpt-4-vision-preview', messages=messages)
+        print(completion.choices[0].message.content)
+        " > image_description.txt
     - name: Toot the new image
       env:
         TOOT_CONFIG: ${{ secrets.MASTODON_TOOT_CONFIG }}
       run: |-
         mkdir -p ~/.config/toot
         echo $TOOT_CONFIG > ~/.config/toot/config.json
+        image_description=$(cat image_description.txt)
         toot post "Latest Covid sewage charts for the SF Bay Area https://publichealth.santaclaracounty.gov/health-information/health-data/disease-data/covid-19/covid-19-wastewater" \
-          --media /tmp/covid.png --description "Screenshot of the latest Covid charts" > latest-toot.md
+          --media /tmp/covid.png --description "$image_description" > latest-toot.md
     - name: Configure Git for commits
       run: |-
         git config user.name "Automated"
