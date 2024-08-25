@@ -71,7 +71,7 @@ jobs:
         mkdir -p ~/.config/toot
         echo $TOOT_CONFIG > ~/.config/toot/config.json
         image_description=$(cat image_description.txt)
-        toot post "Latest Covid sewage charts for the SF Bay Area https://publichealth.santaclaracounty.gov/health-information/health-data/disease-data/covid-19/covid-19-wastewater" \
+        toot post "Latest Covid sewage charts for Santa Clara County, CA https://publichealth.santaclaracounty.gov/health-information/health-data/disease-data/covid-19/covid-19-wastewater" \
           --media /tmp/covid.png --description "$image_description" > latest-toot.md
     - name: Configure Git for commits
       run: |-
