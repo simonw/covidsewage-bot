@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - name: Configure Python with pip cache
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
         cache: 'pip'
     - name: Cache Playwright browsers
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.cache/ms-playwright/
         key: ${{ runner.os }}-browsers
@@ -40,7 +40,7 @@ jobs:
         echo "URL is $url"
         shot-scraper -o /tmp/covid.png $url --wait 5000 -b firefox --retina
     - name: Upload screenshot
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: screenshot
         path: /tmp/covid.png
