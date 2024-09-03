@@ -1,1 +1,1 @@
-The concentration levels of SARS-CoV-2 in Santa Clara County's sewersheds from collected samples are high in the San Jose, Palo Alto, and Gilroy sewersheds, and medium in the Sunnyvale sewershed.
+The SARS-CoV-2 concentration levels in the sewersheds of Santa Clara County are as follows: San Jose Sewershed has a High concentration level, Palo Alto Sewershed has a High concentration level, Sunnyvale Sewershed has a Medium concentration level, and Gilroy Sewershed has a High concentration level.
