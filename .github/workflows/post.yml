@@ -38,7 +38,36 @@ jobs:
           --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:128.0) Gecko/20100101 Firefox/128.0' \
           --raw)
         echo "URL is $url"
-        shot-scraper -o /tmp/covid.png $url --wait 5000 -b firefox --retina
+        shot-scraper $url --javascript -o /tmp/covid.png -b firefox --retina --javascript '
+        new Promise((takeShot) => {
+          setTimeout(() => {
+            // Find the <visual-modern> button with exact text COVID
+            var el = Array.from(document.querySelectorAll(".ui-role-button-text"))
+              .filter((el) => el.textContent.trim() == "COVID")[0]
+              .closest("visual-modern");
+            // Click everything in it to catch the <path> element
+            function clickAllMatchingDescendants(rootElement, selector) {
+              // Find all matching descendants
+              const matchingElements = rootElement.querySelectorAll(selector);
+              // Dispatch click event to each matching element
+              matchingElements.forEach((element) => {
+                element.dispatchEvent(
+                  new MouseEvent("click", {
+                    bubbles: true,
+                    cancelable: true,
+                    view: window,
+                  }),
+                );
+              });
+            }
+            clickAllMatchingDescendants(el, "path");
+            setTimeout(() => {
+              // After 2s take the shot
+              takeShot();
+            }, 2000);
+          }, 3000);
+        });
+        '
     - name: Upload screenshot
       uses: actions/upload-artifact@v4
       with:
