@@ -38,7 +38,7 @@ jobs:
           --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:128.0) Gecko/20100101 Firefox/128.0' \
           --raw)
         echo "URL is $url"
-        shot-scraper $url --javascript -o /tmp/covid.png -b firefox --retina --javascript '
+        shot-scraper $url -o /tmp/covid.png -b firefox --retina --javascript '
         new Promise((takeShot) => {
           setTimeout(() => {
             // Find the <visual-modern> button with exact text COVID
